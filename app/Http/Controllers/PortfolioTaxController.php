@@ -36,8 +36,8 @@ class PortfolioTaxController extends Controller
 
         $validated['is_active'] = $request->boolean('is_active');
 
-        // Ставка по умолчанию — 0,1% в день
-        $validated['daily_rate'] = 0.001;
+        // Ставка по умолчанию — 0,25% в день
+        $validated['daily_rate'] = 0.0025;
 
         PortfolioTax::create($validated);
 

@@ -47,11 +47,11 @@
 
                 <input type="text"
                        class="form-control"
-                       value="0,1%"
+                       value="0,25%"
                        disabled>
 
                 <small class="text-muted">
-                    0,1% от общей стоимости всех активов портфеля.
+                    Ставка по умолчанию — 0,25% в день
                 </small>
             </div>
 
