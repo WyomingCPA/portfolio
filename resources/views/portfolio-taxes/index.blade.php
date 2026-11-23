@@ -1,10 +1,9 @@
-
 @extends('adminlte::page')
 
 @section('title', 'Налоговые обязательства')
 
 @section('content_header')
-    <h1>Налоговые обязательства</h1>
+<h1>Налоговые обязательства</h1>
 @stop
 
 @section('content')
@@ -41,8 +40,12 @@
 
         <div class="card-tools">
             <a href="{{ route('portfolio-taxes.create') }}"
-               class="btn btn-success btn-sm">
+                class="btn btn-success btn-sm">
                 <i class="fas fa-plus"></i> Добавить цель
+            </a>
+            <a href="{{ route('portfolio-tax-accruals.index') }}"
+                class="btn btn-info">
+                <i class="fas fa-history"></i> Журнал начислений
             </a>
         </div>
     </div>
@@ -61,53 +64,53 @@
 
             <tbody>
                 @forelse($taxes as $tax)
-                    <tr>
-                        <td>
-                            <strong>{{ $tax->name }}</strong>
-                        </td>
+                <tr>
+                    <td>
+                        <strong>{{ $tax->name }}</strong>
+                    </td>
 
-                        <td>
-                            {{ number_format($tax->amount, 2, ',', ' ') }} ₽
-                        </td>
+                    <td>
+                        {{ number_format($tax->amount, 2, ',', ' ') }} ₽
+                    </td>
 
-                        <td>
-                            {{ number_format($tax->daily_rate * 100, 2, ',', ' ') }}%
-                        </td>
+                    <td>
+                        {{ number_format($tax->daily_rate * 100, 2, ',', ' ') }}%
+                    </td>
 
-                        <td>
-                            @if($tax->is_active)
-                                <span class="badge badge-success">Активна</span>
-                            @else
-                                <span class="badge badge-secondary">Отключена</span>
-                            @endif
-                        </td>
+                    <td>
+                        @if($tax->is_active)
+                        <span class="badge badge-success">Активна</span>
+                        @else
+                        <span class="badge badge-secondary">Отключена</span>
+                        @endif
+                    </td>
 
-                        <td>
-                            <a href="{{ route('portfolio-taxes.edit', $tax) }}"
-                               class="btn btn-warning btn-xs">
-                                <i class="fas fa-edit"></i>
-                            </a>
+                    <td>
+                        <a href="{{ route('portfolio-taxes.edit', $tax) }}"
+                            class="btn btn-warning btn-xs">
+                            <i class="fas fa-edit"></i>
+                        </a>
 
-                            <form action="{{ route('portfolio-taxes.destroy', $tax) }}"
-                                  method="POST"
-                                  class="d-inline"
-                                  onsubmit="return confirm('Удалить эту цель и историю начислений?')">
-                                @csrf
-                                @method('DELETE')
+                        <form action="{{ route('portfolio-taxes.destroy', $tax) }}"
+                            method="POST"
+                            class="d-inline"
+                            onsubmit="return confirm('Удалить эту цель и историю начислений?')">
+                            @csrf
+                            @method('DELETE')
 
-                                <button type="submit"
-                                        class="btn btn-danger btn-xs">
-                                    <i class="fas fa-trash"></i>
-                                </button>
-                            </form>
-                        </td>
-                    </tr>
+                            <button type="submit"
+                                class="btn btn-danger btn-xs">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </form>
+                    </td>
+                </tr>
                 @empty
-                    <tr>
-                        <td colspan="5" class="text-center text-muted p-4">
-                            Пока нет налоговых целей.
-                        </td>
-                    </tr>
+                <tr>
+                    <td colspan="5" class="text-center text-muted p-4">
+                        Пока нет налоговых целей.
+                    </td>
+                </tr>
                 @endforelse
             </tbody>
 

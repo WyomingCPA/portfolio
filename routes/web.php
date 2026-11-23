@@ -17,6 +17,7 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth:sanctum'], function
     Route::get('', [DashboardController::class, 'index'])->name('main');
     Route::resource('portfolio-assets', PortfolioAssetController::class);
     Route::resource('portfolio-taxes', PortfolioTaxController::class);
+    Route::get('/portfolio-tax-accruals', [\App\Http\Controllers\PortfolioTaxAccrualController::class, 'index'])->name('portfolio-tax-accruals.index');
 });
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
