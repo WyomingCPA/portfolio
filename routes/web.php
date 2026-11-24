@@ -7,6 +7,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PortfolioAssetController;
 use App\Http\Controllers\PortfolioTaxController;
 use App\Http\Controllers\PortfolioLiabilityController;
+use App\Http\Controllers\PortfolioStatisticsController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -20,6 +21,7 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth:sanctum'], function
     Route::resource('portfolio-taxes', PortfolioTaxController::class);
     Route::get('/portfolio-tax-accruals', [\App\Http\Controllers\PortfolioTaxAccrualController::class, 'index'])->name('portfolio-tax-accruals.index');
     Route::resource('portfolio-liabilities', PortfolioLiabilityController::class);
+    Route::get('/portfolio-statistics', [PortfolioStatisticsController::class, 'index'])->name('portfolio-statistics.index');
 });
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
