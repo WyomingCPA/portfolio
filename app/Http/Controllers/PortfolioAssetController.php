@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\PortfolioAsset;
+use App\Models\PortfolioLiability;
 use Illuminate\Http\Request;
 
 use Illuminate\Validation\Rule;
@@ -12,8 +13,16 @@ class PortfolioAssetController extends Controller
     public function index()
     {
         $assets = PortfolioAsset::orderBy('id')->get();
+        $totalAssets = PortfolioAsset::sum('current_value');
+        $totalLiabilities = PortfolioLiability::where('is_active', true)->sum('current_amount');
+        $netWorth = $totalAssets - $totalLiabilities;
 
-        return view('portfolio.index', compact('assets'));
+        return view('portfolio.index', compact(
+            'assets',
+            'totalAssets',
+            'totalLiabilities',
+            'netWorth'
+        ));
     }
 
     public function create()
@@ -83,7 +92,7 @@ class PortfolioAssetController extends Controller
             'price_updated_at' => ['nullable', 'date'],
             'last_rebalanced_at' => ['nullable', 'date'],
         ]);
-        
+
         $validated['target_percent'] /= 100;
         $portfolioAsset->update($validated);
 
