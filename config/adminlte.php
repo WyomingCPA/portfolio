@@ -821,6 +821,11 @@ return [
             'icon' => 'bi bi-person',
         ],
         [
+            'text' => 'Обязательства',
+            'url' => 'dashboard/portfolio-liabilities',
+            'icon' => 'bi bi-person',
+        ],
+        [
             'text' => 'change_password',
             'url' => 'admin/settings',
             'icon' => 'bi bi-lock',
