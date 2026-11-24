@@ -826,6 +826,11 @@ return [
             'icon' => 'bi bi-person',
         ],
         [
+            'text' => 'Торговля базисом',
+            'url' => 'dashboard/portfolio-basis',
+            'icon' => 'bi bi-person',
+        ],
+        [
             'text' => 'Обязательства',
             'url' => 'dashboard/portfolio-liabilities',
             'icon' => 'bi bi-person',
