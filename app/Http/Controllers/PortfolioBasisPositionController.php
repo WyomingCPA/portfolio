@@ -57,14 +57,14 @@ class PortfolioBasisPositionController extends Controller
             ->with('success', 'Парная позиция добавлена.');
     }
 
-    public function edit(PortfolioBasisPosition $portfolio_basis)
+    public function edit(PortfolioBasisPosition $position)
     {
         return view('portfolio-basis.edit', [
-            'position' => $portfolio_basis
+            'position' => $position
         ]);
     }
 
-    public function update(Request $request, PortfolioBasisPosition $portfolio_basis)
+    public function update(Request $request, PortfolioBasisPosition $position)
     {
         $validated = $request->validate([
             'ticker' => 'required|string|max:20',
@@ -88,16 +88,16 @@ class PortfolioBasisPositionController extends Controller
             'notes' => 'nullable|string',
         ]);
 
-        $portfolio_basis->update($validated);
+        $position->update($validated);
 
         return redirect()
             ->route('portfolio-basis.index')
             ->with('success', 'Парная позиция обновлена.');
     }
 
-    public function destroy(PortfolioBasisPosition $portfolio_basis)
+    public function destroy(PortfolioBasisPosition $position)
     {
-        $portfolio_basis->delete();
+        $position->delete();
 
         return redirect()
             ->route('portfolio-basis.index')

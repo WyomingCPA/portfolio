@@ -1,4 +1,3 @@
-
 @extends('adminlte::page')
 
 @section('title', 'Редактировать пару')
@@ -9,7 +8,7 @@
 
 @section('content')
 
-<form action="{{ route('portfolio-basis.update', $position) }}" method="POST">
+<form action="{{ route('portfolio-basis.update', ['position' => $position]) }}" method="POST">
     @csrf
     @method('PUT')
 
