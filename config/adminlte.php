@@ -831,6 +831,12 @@ return [
             'icon' => 'bi bi-person',
         ],
         [
+            'text' => 'Bull Put Spread',
+            'url' => 'dashboard/portfolio-put-spreads',
+            'icon' => 'bi bi-person',
+        ],
+
+        [
             'text' => 'Обязательства',
             'url' => 'dashboard/portfolio-liabilities',
             'icon' => 'bi bi-person',

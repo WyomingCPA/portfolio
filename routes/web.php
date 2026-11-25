@@ -9,6 +9,7 @@ use App\Http\Controllers\PortfolioTaxController;
 use App\Http\Controllers\PortfolioLiabilityController;
 use App\Http\Controllers\PortfolioStatisticsController;
 use App\Http\Controllers\PortfolioBasisPositionController;
+use App\Http\Controllers\PortfolioPutSpreadController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -28,6 +29,11 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth:sanctum'], function
         PortfolioBasisPositionController::class
     )->parameters([
         'portfolio-basis' => 'position'
+    ]);
+    Route::resource(
+        'portfolio-put-spreads', PortfolioPutSpreadController::class
+    )->except(['show'])->parameters([
+        'portfolio-put-spreads' => 'put_spread'
     ]);
 });
 
